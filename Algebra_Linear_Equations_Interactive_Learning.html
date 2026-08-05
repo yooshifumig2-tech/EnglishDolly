@@ -98,6 +98,7 @@
       display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}.stat{padding:19px;border:1px solid var(--line);
       border-radius:18px;background:var(--paper)}.stat strong{display:block;font-family:Georgia,serif;font-size:30px}.stat span{color:var(--muted);font-size:11px}
     .summaryList{display:grid;gap:10px;margin-top:18px}.summaryRow{display:grid;grid-template-columns:150px 1fr auto;gap:12px;
+
       align-items:center;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--paper);font-size:13px}
     .summaryRow span{color:var(--muted)}.summaryRow b{color:var(--green)}.formulaTable{width:100%;margin-top:14px;border-collapse:collapse;font-size:13px}
     .formulaTable th,.formulaTable td{padding:11px;border-bottom:1px solid var(--line);text-align:left}.formulaTable th{color:var(--muted);font-size:11px}
@@ -125,6 +126,7 @@
 
 
   </style>
+  <link rel="stylesheet" href="assets/hub.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to lesson</a>
@@ -197,6 +199,7 @@
         concepts:[
           ["Term","Each member is a term: <span class='math'>T₁, T₂, T₃, …</span>.","数列中的每个数称为一项，依次记为 T₁、T₂、T₃……"],
           ["Difference","For <span class='math'>4, 7, 10, 13, …</span>, add 3 each time.","数列 4,7,10,13,… 每次增加 3。"],
+
           ["Ratio","For <span class='math'>3, 6, 12, 24, …</span>, multiply by 2 each time.","数列 3,6,12,24,… 每次乘 2。"]],
         example:{title:"Describe before predicting",text:"Find the next two terms of <span class='math'>35, 28, 21, 14, …</span>.",steps:["Successive terms decrease by 7.","The next term is <span class='math'>14 − 7 = 7</span>.","The following term is <span class='math'>7 − 7 = 0</span>."],zh:"求数列 35,28,21,14,… 的下两项。"},
         questions:[
@@ -297,6 +300,7 @@
         ]},
       {id:"denominators",group:"Chapter 4 · Linear Equations",code:"4.2",en:"Eliminating denominators",zh:"消去分母",
         intro:"Multiply every term on both sides by the least common multiple of the denominators. Then solve the resulting equation.",
+
         introZh:"用所有分母的最小公倍数乘等式两边的每一项，消去分母后再解方程。",
         concepts:[
           ["Choose the LCM","For denominators 3 and 4, multiply by 12.","分母为 3 和 4 时，可把等式两边乘 12。"],
@@ -397,6 +401,7 @@
         <section class="chapterStrip"><article class="chapterCard"><span>CHAPTER 3 · 3.1–3.3</span><h3>Introduction to Algebra</h3><p>Letters, expressions, formulas, substitution, number patterns and general terms.</p></article>
         <article class="chapterCard"><span>CHAPTER 4 · 4.1–4.3</span><h3>Linear Equations</h3><p>Balance method, transposition, brackets, fractions and real-life modelling.</p></article></section>
         <section class="example"><div class="exampleGrid"><div><div class="eyebrow">How to use this site</div><h3>Learn → practise → explain</h3><p>Read the rule, follow the worked steps, then answer every question. Turn on Chinese translation whenever you need support.</p></div><ol class="steps"><li data-step="1">Choose a lesson from the left menu.</li><li data-step="2">Use the interactive labs to test patterns.</li><li data-step="3">Complete all questions to save progress.</li></ol></div></section>`;
+
     }
     function renderSummary(){
       const all=lessons.flatMap(l=>l.questions||[]);let answered=0,correct=0;all.forEach(q=>{if(state.answers[q.id]!==undefined){answered++;if(state.answers[q.id]===q.answer)correct++}});
@@ -497,6 +502,7 @@
   };
   const aiState = safeLoad();
   let busy = false;
+
   let lastContextKey = "";
   let lastCanReveal = false;
   const save = () => localStorage.setItem(STORE, JSON.stringify(aiState));
@@ -597,6 +603,7 @@
   function renderPanel() {
     const ctx = currentContext();
     lastContextKey = ctx.key;
+
     lastCanReveal = ctx.canReveal;
     const messages = aiState.chats[ctx.key] || [];
     $("#fumi-ai-context").innerHTML = `<b>${escapeHtml(ctx.contextLabel)}</b><br>${ctx.canReveal ? "已完成，可讨论答案与完整解析" : ctx.mode === "exam" ? "测验保护模式：只给思考提示，不核对或公布答案" : "提交前模式：只提示思考步骤，不公布选项、数值或最终答案"}`;
@@ -679,5 +686,6 @@
 })();
 
 </script>
+<script src="assets/course-bridge.js"></script>
 </body>
 </html>

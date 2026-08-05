@@ -98,6 +98,7 @@
       box-shadow:20px 0 60px rgba(0,0,0,.2)}.sidebar.open{transform:none}.mobileScrim{display:block;position:fixed;inset:0;
       background:rgba(0,0,0,.34);z-index:35;opacity:0;pointer-events:none;transition:.2s}.mobileScrim.show{opacity:1;pointer-events:auto}
       .menuBtn{display:grid}.topbar{padding:14px 18px;height:70px}.workspace{padding:24px 16px 80px}}
+
     @media(max-width:620px){.questionCard,.completion{padding:23px 18px;border-radius:19px}.prompt{font-size:18px}.questionHead{display:block}
       .translateBtn{margin-top:12px}.topActions .statPill.bad{display:none}.topTitle p{display:none}.statsGrid,.scoreGrid{grid-template-columns:1fr 1fr}
       .sectionRow{grid-template-columns:60px 1fr 58px}.modal{padding:19px}.shortcut{display:none}}
@@ -119,6 +120,7 @@
 
 
   </style>
+  <link rel="stylesheet" href="assets/hub.css">
 </head>
 <body>
   <div class="app">
@@ -197,6 +199,7 @@
       x("l5q3","3.3","Square numbers",1,"3.27–3.30","Which list contains only square numbers?","哪一列全部是平方数？",["1, 4, 9, 16","1, 3, 6, 10","2, 4, 8, 16","1, 5, 9, 13"],"1, 4, 9, 16","These are 1², 2², 3² and 4².","它们分别是 1²、2²、3²、4²。"),
       x("l6q1","3.3","General term",2,"3.31–3.36","Find Tₙ for 4, 7, 10, 13, …","求数列 4,7,10,13,… 的通项。",["3n","3n + 1","4n − 1","n + 3"],"3n + 1","Difference 3 gives 3n; add 1 to make the first term 4.","公差为 3，先写 3n；加 1 后首项为 4。"),
       x("l6q2","3.3","General term",1,"3.31–3.36","Find the 20th term when Tₙ = 5n − 2.","当 Tₙ=5n−2 时，求第 20 项。",["90","95","98","102"],"98","T₂₀ = 5(20) − 2 = 98.","代入 n=20：5×20−2=98。"),
+
       x("l6q3","3.3","General term",2,"3.31–3.36","Which sequence has Tₙ = 2n + 3?","哪一个数列的通项是 Tₙ=2n+3？",["3, 5, 7, 9","5, 7, 9, 11","2, 5, 8, 11","5, 10, 15, 20"],"5, 7, 9, 11","Substitute n = 1, 2, 3, 4.","依次代入 n=1、2、3、4。"),
       x("r3q1","3R","Simplification review",2,"3.37–3.50","Simplify 9a − 4a + 2.","化简 9a−4a+2。",["5a + 2","5a","13a + 2","7a"],"5a + 2","9a − 4a = 5a; the constant 2 remains.","9a−4a=5a，常数 2 保留。"),
       x("r3q2","3R","Substitution review",2,"3.37–3.50","If x = −3, find 2x² + 1.","当 x=−3 时，求 2x²+1。",["−17","−5","7","19"],"19","Square first: (−3)² = 9, then 2×9 + 1 = 19.","先平方：(−3)²=9，再算 2×9+1=19。"),
@@ -297,6 +300,7 @@
       if(correct){state.currentStreak++;state.bestStreak=Math.max(state.bestStreak,state.currentStreak)}else{state.wrong[q.id]=true;state.currentStreak=0}
       save();render();
     }
+
     function nav(delta){
       if(state.exam&&state.index===queue.length-1&&delta>0)return finishExam();
       state.index=Math.max(0,state.index+delta);save();render();
@@ -397,6 +401,7 @@
   const $ = selector => document.querySelector(selector);
   const clean = (value, max = 1800) => String(value ?? "").trim().slice(0, max);
   const safeLoad = () => {
+
     try {
       const parsed = JSON.parse(localStorage.getItem(STORE) || "{}");
       return { chats: parsed.chats || {}, endpoint: parsed.endpoint || "" };
@@ -497,6 +502,7 @@
     if (!ctx.canReveal) return ["只提示第一步", "用中英双语解释题意", "检查我的思路", "我可能混淆了什么"];
     return ["完整讲解这道题", "为什么我错了", "换一种方法", "给我一道相似题"];
   }
+
   function setStatus(label, kind = "") {
     $("#fumi-ai-status-copy").textContent = label;
     $("#fumi-ai-dot").className = `fumi-ai-dot ${kind}`;
@@ -586,5 +592,6 @@
 })();
 
 </script>
+<script src="assets/course-bridge.js"></script>
 </body>
 </html>
