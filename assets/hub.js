@@ -63,7 +63,14 @@
   function shortDate(value){ return value ? new Date(value).toLocaleDateString("zh-CN",{month:"numeric",day:"numeric"}) : "尚未开始"; }
   function nextStage(){ for(const id of Object.keys(UNITS)){ if(!stageDone(id,"learning")) return {unit:id,kind:"learning"}; if(!stageDone(id,"practice")) return {unit:id,kind:"practice"}; } return null; }
   function unitName(id){const u=UNITS[id];return u?`${u.id} · ${u.en}`:"Book 1A";}
-  function target(id,kind){ return `study.html?unit=${encodeURIComponent(id)}&mode=${encodeURIComponent(kind)}`; }
+  function target(id,kind){
+    const unit=UNITS[id];
+    if(!unit) return "index.html";
+    // Local DOLLY pages already include navigation, glossary, FUMI AI and
+    // progress syncing, so open them directly like the physics learning site.
+    if(!unit.external) return kind==="practice"?unit.practice:unit.learn;
+    return `study.html?unit=${encodeURIComponent(id)}&mode=${encodeURIComponent(kind)}`;
+  }
   function header(active=""){ return `<header class="hub-top hub-shell"><a class="hub-brand" href="index.html"><i>F</i> DOLLY · BOOK 1A</a><nav class="hub-nav"><a class="${active==='home'?'active':''}" href="index.html">导航 · Home</a><a class="${active==='report'?'active':''}" href="report.html">学习地图 · Map</a><a class="${active==='orid'?'active':''}" href="orid.html">ORID 复盘</a></nav><div class="hub-top-actions"><button class="hub-action" data-glossary>术语表 Glossary</button><button class="hub-action" data-fumi>FUMI AI</button></div></header>`; }
   function mountCommon(active){
     const holder=q("[data-hub-header]"); if(holder) holder.innerHTML=header(active);
