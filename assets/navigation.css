@@ -1,0 +1,37 @@
+/* Persistent, high-contrast route back to the Book 1A navigation page. */
+.nav-return {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  background: #1f4668;
+  text-align: left;
+}
+
+.nav-return small {
+  display: block;
+  margin-left: 6px;
+  color: #c6dced;
+  font-size: 9px;
+  font-weight: 750;
+}
+
+.bridge-bar .bridge-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 999px;
+  background: #1f4668;
+  color: #fff;
+  padding: 6px 9px;
+  font-weight: 900;
+}
+
+.bridge-home span {
+  color: #c6dced;
+  font-size: 9px;
+}
+
+@media (max-width: 620px) {
+  .bridge-home span { display: none; }
+}
