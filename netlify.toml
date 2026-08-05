@@ -13,3 +13,20 @@
     X-Frame-Options = "SAMEORIGIN"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
+
+# Keep the previous shared course URL working after the learning hub becomes
+# the site home, and provide a stable matching URL for the practice bank.
+[[redirects]]
+  from = "/algebra_linear_equations_interactive_learning"
+  to = "/Algebra_Linear_Equations_Interactive_Learning.html"
+  status = 200
+
+[[redirects]]
+  from = "/algebra_linear_equations_practice_bank"
+  to = "/Algebra_Linear_Equations_Practice_Bank.html"
+  status = 200
+
+[[redirects]]
+  from = "/learning-hub"
+  to = "/index.html"
+  status = 200
